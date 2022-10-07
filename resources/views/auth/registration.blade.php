@@ -20,24 +20,47 @@
             }
         </style>
     </head>
-    <body class="antialiased">
 
-        @if( auth()->check() )
-            <li class="nav-item">
-                <a class="nav-link" href="#">{{ auth()->user()->name }}</a>
-            </li>
-        @endif
+<body>
+<form method="POST" action="/registration">
+        @csrf
 
-    <ul>
-            @foreach ($teams as $team)
-                <li>
-                    <a href="{{ route('single-team', [ 'id' => $team->id ]) }}">
-                        {{ $team->name }}
-                    </a>
-                </li>
-            @endforeach
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control"/>
+        </div>
 
-    </ul>
-    
-    </body>
-</html>
+        @error('name')
+            @include('partials.error')
+        @enderror
+        
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" name="email" class="form-control"/>
+        </div>
+
+        @error('email')
+             @include('partials.error')
+        @enderror
+
+        <div class="mb-3">
+            <label class="form-label">Conferm Email</label>
+            <input type="text" name="email" class="form-control"/>
+        </div>
+
+        @error('email')
+            @include('partials.error')
+        @enderror
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" />
+        </div>
+
+        @error('password')
+            @include('partials.error')
+        @enderror
+        
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</body>
