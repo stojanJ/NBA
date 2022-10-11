@@ -15,4 +15,10 @@ class Team extends Model
     public function player(){
         return $this->hasMany(Player::class);
     }
+
+    public function comments(){
+
+        return $this->hasMany(Comment::class);
+    }
+
 }

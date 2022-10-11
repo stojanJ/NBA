@@ -53,7 +53,7 @@ class TeamsController extends Controller
     public function show(Team $id)
     {
         $players = Player::with('team')->get();
-        $team=Team::find($id)->first();
+        $team = Team::with('players', 'comments.user')->find($id);
         return view('teams.show', compact('team', 'players'));
     }
 

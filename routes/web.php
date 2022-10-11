@@ -29,3 +29,5 @@ Route::post('/registration', [RegisterController::class, 'store']);
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
 Route::get('/logout', [SessionController::class, 'destroy']);
+
+Route::post('/teams/{team_id}/comments',[CommentController::class, 'store'])->name('team-comments');
