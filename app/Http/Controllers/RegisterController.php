@@ -34,6 +34,6 @@ class RegisterController extends Controller
 
         session()->flash('message', 'Registration is successful');
 
-        return redirect('/');
+        return redirect('auth.login');
     }
 }
