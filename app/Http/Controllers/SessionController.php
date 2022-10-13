@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class SessionController extends Controller
 {
@@ -24,7 +25,14 @@ class SessionController extends Controller
         ]);
 
         if ($success) {
-            return redirect('/');
+            if(auth()->user()->is_verified){
+                 return redirect('/');
+                }else{
+                    $this->destroy();
+                return back()->withErrors([
+                    'message' => 'You are not verified'
+                ]);
+                }
         } else {
             return back()->withErrors([
                 'message' => 'Please check you credentials.'
